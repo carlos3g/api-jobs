@@ -8,7 +8,7 @@ module.exports = {
 
   async show(req, res) {
     const { unId } = req.headers;
-    const un = Unemployers.findById(unId);
+    const un = await Unemployers.findById(unId);
     return res.json(un)
   },
 

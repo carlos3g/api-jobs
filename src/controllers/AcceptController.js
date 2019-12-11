@@ -1,12 +1,12 @@
 const Employers = require('../models/Employers');
-const Unemployeds = require('../models/Unemployers.js');
+const Unemployers = require('../models/Unemployers.js');
 
 module.exports = {
   async store(req, res) {
     const { user, type } = req.headers;
     const { empId } = req.params;
 
-    const userId = await Unemployeds.findById(user);
+    const userId = await Unemployers.findById(user);
     const emId = await Employers.findById(empId);
 
 

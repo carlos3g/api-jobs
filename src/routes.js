@@ -14,12 +14,15 @@ const routes = express.Router();
 
 routes.post('/un', UnController.store);
 routes.get('/un', UnController.index);
+routes.get('/only/un', UnController.show);
+
 routes.post('/em', EmController.store);
 routes.get('/em', EmController.index);
 routes.post('/em/:empId/accept', AcceptController.store);
 routes.get('/em/receiveds', ReceivedController.index);
-routes.get('/login', LoginController.show);
 routes.post('/em/receiveds/button', ButtonController.store);
+
+routes.get('/login', LoginController.show);
 routes.get('/notifi', NotifiController.show);
 routes.post('/modify', ModifyController.store);
 

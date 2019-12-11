@@ -6,11 +6,9 @@ module.exports = {
     return res.json(emps);
   },
   async store(req, res) {
-
     const { email, name, pass, search } = req.body;
 
     const userExists = await Employers.findOne({email: email});
-
 
     if (userExists) {
       return res.json(userExists)

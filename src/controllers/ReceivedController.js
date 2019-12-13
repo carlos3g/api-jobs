@@ -34,6 +34,9 @@ module.exports = {
           {_id: {$in: employer.received}} // pega todos os unemployers que estão em received
         ]
       })
+
+      shuffle(uns)
+
       return res.json(uns);
   }
 

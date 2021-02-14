@@ -8,18 +8,18 @@ module.exports = {
 
   async show(req, res) {
     const { unId } = req.headers;
-    const un = await Unemployers.findOne( {_id: unId} )
-    return res.json(un)
+    const un = await Unemployers.findOne({ _id: unId });
+    return res.json(un);
   },
 
   async store(req, res) {
     const { email, age, name, pass, skills, cur } = req.headers;
 
-    const userExists = await Unemployers.findOne({email: email});
+    const userExists = await Unemployers.findOne({ email: email });
 
     if (userExists) {
-      return res.json(userExists)
-    };
+      return res.json(userExists);
+    }
 
     await Unemployers.create({
       email: email,
@@ -29,11 +29,11 @@ module.exports = {
       skills: skills,
       cur: cur,
       notifications: [],
-      send: []
+      send: [],
     });
 
-    const user = await Unemployers.findOne({email: email});
+    const user = await Unemployers.findOne({ email: email });
 
     return res.json(user);
-  }
-}
+  },
+};

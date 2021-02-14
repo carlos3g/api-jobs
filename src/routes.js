@@ -1,5 +1,5 @@
 const express = require('express');
-
+const routes = express.Router();
 
 const EmController = require('./controllers/EmController');
 const UnController = require('./controllers/UnController');
@@ -9,8 +9,6 @@ const LoginController = require('./controllers/LoginController');
 const ButtonController = require('./controllers/ButtonController');
 const NotifiController = require('./controllers/NotifiController');
 const ModifyController = require('./controllers/ModifyController');
-
-const routes = express.Router();
 
 routes.post('/un', UnController.store);
 routes.get('/un', UnController.index);

@@ -9,20 +9,21 @@ module.exports = {
     const un = await Unemployers.findById(unId);
     const index = emp.received.indexOf(unId);
 
-    emp.received.splice(index, 1)
+    emp.received.splice(index, 1);
 
-    if (type === "accept") {
-      un.notifications.push(`Seu curriculo foi aceito na empresa ${emp.name}.\nVerifique seu email`)
+    if (type === 'accept') {
+      un.notifications.push(
+        `Seu curriculo foi aceito na empresa ${emp.name}.\nVerifique seu email`
+      );
+    } else if (type === 'cancel') {
+      un.notifications.push(
+        `Seu curriculo não foi aceito na empresa ${emp.name}`
+      );
     }
-
-    else if (type === "cancel") {
-      un.notifications.push(`Seu curriculo não foi aceito na empresa ${emp.name}`)
-    }
-
 
     await emp.save();
-    await un.save()
+    await un.save();
 
-    return res.json(emp)
-  }
+    return res.json(emp);
+  },
 };

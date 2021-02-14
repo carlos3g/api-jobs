@@ -1,4 +1,4 @@
-const UnemployedsModel = require('../models/Unemployers.js');
+const UnemployedsModel = require('../models/Unemployeds');
 
 module.exports = {
   async show(req, res) {

@@ -1,4 +1,4 @@
-const UnemployedsModel = require('../models/Unemployers');
+const UnemployedsModel = require('../models/Unemployeds');
 const EmployersModel = require('../models/Employers');
 
 // TODO: colocar condição para caso o usuário não for encontrado

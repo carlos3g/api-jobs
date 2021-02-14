@@ -1,5 +1,5 @@
 const EmployersModel = require('../models/Employers');
-const UnemployedsModel = require('../models/Unemployers.js');
+const UnemployedsModel = require('../models/Unemployeds');
 
 module.exports = {
   async store(req, res) {

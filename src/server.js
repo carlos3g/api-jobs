@@ -17,10 +17,10 @@ mongoose
     console.log(`Não foi possível se conectar ao mongoDB. \nErro: ${err}`);
   });
 
-app.use(cors()); // permite o uso da API por qualquer um (ex: React)
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev')); // mostra logs no terminal
+app.use(morgan('dev'));
 app.use(routes);
 
 app.listen(process.env.PORT || 3333);

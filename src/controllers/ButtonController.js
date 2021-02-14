@@ -1,29 +1,29 @@
-const Employers = require('../models/Employers');
-const Unemployers = require('../models/Unemployers.js');
+const EmployersModel = require('../models/Employers');
+const UnemployedsModel = require('../models/Unemployers');
 
 module.exports = {
   async store(req, res) {
     const { unId, empId, type } = req.body;
 
-    const emp = await Employers.findById(empId);
-    const un = await Unemployers.findById(unId);
-    const index = emp.received.indexOf(unId);
+    const employer = await EmployersModel.findById(empId);
+    const unemployed = await UnemployedsModel.findById(unId);
+    const index = employer.received.indexOf(unId);
 
-    emp.received.splice(index, 1);
+    employer.received.splice(index, 1);
 
     if (type === 'accept') {
-      un.notifications.push(
-        `Seu curriculo foi aceito na empresa ${emp.name}.\nVerifique seu email`
+      unemployed.notifications.push(
+        `Seu curriculo foi aceito na empresa ${employer.name}.\nVerifique seu email`
       );
     } else if (type === 'cancel') {
-      un.notifications.push(
-        `Seu curriculo não foi aceito na empresa ${emp.name}`
+      unemployed.notifications.push(
+        `Seu curriculo não foi aceito na empresa ${employer.name}`
       );
     }
 
-    await emp.save();
-    await un.save();
+    await employer.save();
+    await unemployed.save();
 
-    return res.json(emp);
+    return res.json(employer);
   },
 };

@@ -1,20 +1,20 @@
-const Unemployers = require('../models/Unemployers');
+const UnemployedsModel = require('../models/Unemployers');
 
 module.exports = {
   async store(req, res) {
     const { email, age, name, pass, skills, cur } = req.headers;
 
-    const user = await Unemployers.findOne({ email: email });
+    const unemployed = await UnemployedsModel.findOne({ email: email });
 
-    user.email = email;
-    user.age = age;
-    user.name = name;
-    user.pass = pass;
-    user.skills = skills;
-    user.cur = cur;
+    unemployed.email = email;
+    unemployed.age = age;
+    unemployed.name = name;
+    unemployed.pass = pass;
+    unemployed.skills = skills;
+    unemployed.cur = cur;
 
-    user.save();
+    unemployed.save();
 
-    return res.json(user);
+    return res.json(unemployed);
   },
 };

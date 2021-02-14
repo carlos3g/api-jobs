@@ -1,27 +1,27 @@
-const Unemployers = require('../models/Unemployers');
+const UnemployedsModel = require('../models/Unemployers');
 
 module.exports = {
   async index(req, res) {
-    const uns = await Unemployers.find();
-    return res.json(uns);
+    const unemployeds = await UnemployedsModel.find();
+    return res.json(unemployeds);
   },
 
   async show(req, res) {
     const { unId } = req.headers;
-    const un = await Unemployers.findOne({ _id: unId });
-    return res.json(un);
+    const unemployed = await UnemployedsModel.findOne({ _id: unId });
+    return res.json(unemployed);
   },
 
   async store(req, res) {
     const { email, age, name, pass, skills, cur } = req.headers;
 
-    const userExists = await Unemployers.findOne({ email: email });
+    const unemployed = await UnemployedsModel.findOne({ email: email });
 
-    if (userExists) {
-      return res.json(userExists);
+    if (unemployed) {
+      return res.json(unemployed);
     }
 
-    await Unemployers.create({
+    await UnemployedsModel.create({
       email: email,
       age: age,
       name: name,
@@ -32,8 +32,8 @@ module.exports = {
       send: [],
     });
 
-    const user = await Unemployers.findOne({ email: email });
+    const newUnemployed = await UnemployedsModel.findOne({ email: email });
 
-    return res.json(user);
+    return res.json(newUnemployed);
   },
 };

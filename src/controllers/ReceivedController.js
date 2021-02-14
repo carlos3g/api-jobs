@@ -1,5 +1,5 @@
-const Unemployers = require('../models/Unemployers.js');
-const Employers = require('../models/Employers');
+const UnemployedsModel = require('../models/Unemployers');
+const EmployersModel = require('../models/Employers');
 
 // TODO: colocar condição para caso o usuário não for encontrado
 
@@ -23,34 +23,34 @@ module.exports = {
     const { id, type } = req.headers;
 
     if (type === 'em') {
-      const employer = await Employers.findById(id).catch(() => {
+      const employer = await EmployersModel.findById(id).catch(() => {
         console.log(`Erro: Empresa não encontrada`);
       });
 
-      const uns = await Unemployers.find({
+      const unemployeds = await UnemployedsModel.find({
         $and: [
           { _id: { $in: employer.received } }, // pega todos os unemployers que estão em received
         ],
       });
 
-      shuffle(uns);
+      shuffle(unemployeds);
 
-      return res.json(uns);
+      return res.json(unemployeds);
     } else {
       // se for un
-      const unemployer = await Unemployers.findById(id).catch(() => {
+      const unemployer = await UnemployedsModel.findById(id).catch(() => {
         console.log(`Erro: Desempregado não encontrado`);
       });
 
-      const ems = await Employers.find({
+      const employers = await EmployersModel.find({
         $and: [
           { _id: { $nin: unemployer.send } }, // pega todos os employers que não estão em send
         ],
       });
 
-      shuffle(ems);
+      shuffle(employers);
 
-      return res.json(ems);
+      return res.json(employers);
     }
   },
 };

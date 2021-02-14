@@ -1,20 +1,20 @@
-const Employers = require('../models/Employers');
+const EmployersModel = require('../models/Employers');
 
 module.exports = {
   async index(req, res) {
-    const emps = await Employers.find();
-    return res.json(emps);
+    const employers = await EmployersModel.find();
+    return res.json(employers);
   },
   async store(req, res) {
     const { email, name, pass, search } = req.body;
 
-    const userExists = await Employers.findOne({ email: email });
+    const employer = await EmployersModel.findOne({ email: email });
 
-    if (userExists) {
-      return res.json(userExists);
+    if (employer) {
+      return res.json(employer);
     }
 
-    await Employers.create({
+    await EmployersModel.create({
       email: email,
       name: name,
       pass: pass,
@@ -22,8 +22,8 @@ module.exports = {
       received: [],
     });
 
-    const user = await Employers.findOne({ email: email });
+    const newEmployer = await EmployersModel.findOne({ email: email });
 
-    return res.json(user);
+    return res.json(newEmployer);
   },
 };

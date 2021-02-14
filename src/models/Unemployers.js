@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UnSchema = new mongoose.Schema(
+const UnemployerSchema = new mongoose.Schema(
   {
     email: String,
     age: String,
@@ -25,4 +25,4 @@ const UnSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Unemployer', UnSchema);
+module.exports = mongoose.model('Unemployer', UnemployerSchema);

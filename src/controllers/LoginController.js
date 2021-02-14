@@ -7,16 +7,14 @@ module.exports = {
 
     if (type === 'em') {
       const employer = await EmployersModel.findOne({ email: email }).catch(() => {
-        console.log(`Erro ao logar Empresa`);
+        return res.status(404).json({ error: 'Employer não encontrado' });
       });
-      console.log('Empresa logada');
       return res.json(employer);
     } else {
       // loga o un
       const unemployed = await UnemployedsModel.findOne({ email: email }).catch(() => {
-        console.log(`Erro ao logar Desempregado`);
+        return res.status(404).json({ error: 'Unemployed não encontrado' });
       });
-      console.log('Desempregado logado');
       return res.json(unemployed);
     }
   },

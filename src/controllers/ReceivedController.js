@@ -24,7 +24,7 @@ module.exports = {
 
     if (type === 'em') {
       const employer = await EmployersModel.findById(id).catch(() => {
-        console.log(`Erro: Empresa não encontrada`);
+        return res.status(404).json({ error: 'Employer não encontrado' });
       });
 
       const unemployeds = await UnemployedsModel.find({
@@ -39,7 +39,7 @@ module.exports = {
     } else {
       // se for un
       const unemployer = await UnemployedsModel.findById(id).catch(() => {
-        console.log(`Erro: Desempregado não encontrado`);
+        return res.status(404).json({ error: 'Unemployer não encontrado' });
       });
 
       const employers = await EmployersModel.find({
